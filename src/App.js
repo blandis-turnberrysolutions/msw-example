@@ -1,7 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import * as React from "react";
 
 function App() {
+  const [data, setData] = React.useState();
+
+  React.useEffect(() => {
+    (async () => {
+      fetch("https://jsonplaceholder.typicode.com/posts/1")
+        .then((response) => response.json())
+        .then((json) => setData(json));
+    })();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,6 +27,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+          {data && <h1>{data.title}</h1>}
         </a>
       </header>
     </div>

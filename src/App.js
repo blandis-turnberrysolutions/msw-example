@@ -7,9 +7,11 @@ function App() {
 
   React.useEffect(() => {
     (async () => {
-      fetch("https://jsonplaceholder.typicode.com/posts/1")
-        .then((response) => response.json())
-        .then((json) => setData(json));
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts/1"
+      );
+      const json = await response.json();
+      setData(json);
     })();
   }, []);
 
